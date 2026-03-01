@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uv Media - Checkout</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<style>
+body{
+margin:0;
+font-family:Poppins, sans-serif;
+background:linear-gradient(135deg,#000,#111);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:rgba(255,255,255,0.05);
+padding:40px;
+border-radius:20px;
+width:400px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,215,0,0.2);
+}
+
+h2{
+color:gold;
+text-align:center;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:none;
+outline:none;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,gold,#ffcc00);
+font-weight:600;
+cursor:pointer;
+margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Billing Details</h2>
+
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email Address" required>
+<input type="text" id="phone" placeholder="Mobile Number" required>
+<input type="text" id="address" placeholder="Shipping Address" required>
+
+<h3>Total Amount: ₹<span id="amount"></span></h3>
+
+<button onclick="payNow()">Proceed to Pay</button>
+</div>
+
+<script>
+let params = new URLSearchParams(window.location.search);
+let total = params.get("total");
+document.getElementById("amount").innerText = total;
+
+function payNow(){
+
+var options = {
+"key": "YOUR_RAZORPAY_KEY_HERE",
+"amount": total * 100,
+"currency": "INR",
+"name": "Uv Media",
+"description": "Premium Product Purchase",
+"handler": function (response){
+alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+window.location.href="index.html";
+},
+"prefill": {
+"name": document.getElementById("name").value,
+"email": document.getElementById("email").value,
+"contact": document.getElementById("phone").value
+},
+"theme": {
+"color": "#FFD700"
+}
+};
+
+var rzp1 = new Razorpay(options);
+rzp1.open();
+}
+</script>
+
+</body>
+</html>
