@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uv Media - Premium Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#000,#111,#1a1a1a);
+color:white;
+overflow-x:hidden;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(255,215,0,0.05);
+backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,215,0,0.2);
+}
+
+.logo{
+font-size:28px;
+font-weight:700;
+background:linear-gradient(45deg,gold,#ffcc00);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.cart{
+background:gold;
+color:black;
+padding:8px 18px;
+border-radius:30px;
+font-weight:600;
+}
+
+.container{
+padding:60px 8%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:40px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+padding:25px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,215,0,0.15);
+transition:0.4s ease;
+position:relative;
+overflow:hidden;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(255,215,0,0.3);
+}
+
+.card img{
+width:100%;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+.card h2{
+font-size:22px;
+margin-bottom:10px;
+color:gold;
+}
+
+.card p{
+font-size:14px;
+color:#ccc;
+margin-bottom:15px;
+}
+
+.price{
+font-size:20px;
+color:#00ff88;
+font-weight:600;
+margin-bottom:15px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,gold,#ffcc00);
+color:black;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px gold;
+}
+
+.cart-box{
+margin:40px 8%;
+padding:25px;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+border:1px solid rgba(255,215,0,0.2);
+}
+
+footer{
+text-align:center;
+padding:20px;
+color:#aaa;
+margin-top:40px;
+border-top:1px solid rgba(255,215,0,0.2);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Uv Media</div>
+<div class="cart">Cart: <span id="cart-count">0</span></div>
+</header>
+
+<section class="container">
+
+<!-- Product 1 -->
+<div class="card">
+<img src="1000060053.jpg" alt="">
+<h2>TRIGGR NeoPods X – Electric Lime Edition</h2>
+<p>Experience powerful bass, ultra-low latency gaming mode & crystal clear HD calling. Designed in a bold neon black & lime finish for a premium vibe.</p>
+<div class="price">₹2,499</div>
+<button onclick="addToCart(2499)">Add to Cart</button>
+</div>
+
+<!-- Product 2 -->
+<div class="card">
+<img src="1000060054.jpg" alt="">
+<h2>TRIGGR Phantom X – Limited Warrior Edition</h2>
+<p>Luxury metallic finish with aggressive design. 40H battery backup, deep surround sound & ultra premium build crafted for true audio warriors.</p>
+<div class="price">₹3,999</div>
+<button onclick="addToCart(3999)">Add to Cart</button>
+</div>
+
+</section>
+
+<div class="cart-box">
+<h2>Shopping Summary</h2>
+<p>Total Items: <span id="total-items">0</span></p>
+<p>Total Price: ₹<span id="total-price">0</span></p>
+</div>
+
+<footer>
+© 2026 Uv Media | Premium Digital Store
+</footer>
+
+<script>
+let count=0;
+let total=0;
+
+function addToCart(price){
+count++;
+total+=price;
+
+document.getElementById("cart-count").innerText=count;
+document.getElementById("total-items").innerText=count;
+document.getElementById("total-price").innerText=total;
+}
+</script>
+
+</body>
+</html>
