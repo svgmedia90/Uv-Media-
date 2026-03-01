@@ -18,7 +18,6 @@ font-family:'Poppins',sans-serif;
 body{
 background:linear-gradient(135deg,#000,#111,#1a1a1a);
 color:white;
-overflow-x:hidden;
 }
 
 header{
@@ -45,6 +44,7 @@ color:black;
 padding:8px 18px;
 border-radius:30px;
 font-weight:600;
+cursor:pointer;
 }
 
 .container{
@@ -61,8 +61,6 @@ padding:25px;
 backdrop-filter:blur(20px);
 border:1px solid rgba(255,215,0,0.15);
 transition:0.4s ease;
-position:relative;
-overflow:hidden;
 }
 
 .card:hover{
@@ -104,28 +102,11 @@ background:linear-gradient(45deg,gold,#ffcc00);
 color:black;
 font-weight:600;
 cursor:pointer;
-transition:0.3s;
 }
 
 button:hover{
 transform:scale(1.05);
 box-shadow:0 0 20px gold;
-}
-
-.cart-box{
-margin:40px 8%;
-padding:25px;
-background:rgba(255,255,255,0.05);
-border-radius:20px;
-border:1px solid rgba(255,215,0,0.2);
-}
-
-footer{
-text-align:center;
-padding:20px;
-color:#aaa;
-margin-top:40px;
-border-top:1px solid rgba(255,215,0,0.2);
 }
 </style>
 </head>
@@ -134,52 +115,52 @@ border-top:1px solid rgba(255,215,0,0.2);
 
 <header>
 <div class="logo">Uv Media</div>
-<div class="cart">Cart: <span id="cart-count">0</span></div>
+
+<!-- ✅ STEP 1 ADDED -->
+<div class="cart" onclick="goToCheckout()">
+Cart: <span id="cart-count">0</span>
+</div>
+
 </header>
 
 <section class="container">
 
-<!-- Product 1 -->
 <div class="card">
 <img src="1000060053.jpg" alt="">
 <h2>TRIGGR NeoPods X – Electric Lime Edition</h2>
-<p>Experience powerful bass, ultra-low latency gaming mode & crystal clear HD calling. Designed in a bold neon black & lime finish for a premium vibe.</p>
+<p>Ultra bass, gaming mode & HD calling with bold premium design.</p>
 <div class="price">₹2,499</div>
 <button onclick="addToCart(2499)">Add to Cart</button>
 </div>
 
-<!-- Product 2 -->
 <div class="card">
 <img src="1000060054.jpg" alt="">
 <h2>TRIGGR Phantom X – Limited Warrior Edition</h2>
-<p>Luxury metallic finish with aggressive design. 40H battery backup, deep surround sound & ultra premium build crafted for true audio warriors.</p>
+<p>Luxury metallic finish, 40H battery & deep surround sound.</p>
 <div class="price">₹3,999</div>
 <button onclick="addToCart(3999)">Add to Cart</button>
 </div>
 
 </section>
 
-<div class="cart-box">
-<h2>Shopping Summary</h2>
-<p>Total Items: <span id="total-items">0</span></p>
-<p>Total Price: ₹<span id="total-price">0</span></p>
-</div>
-
-<footer>
-© 2026 Uv Media | Premium Digital Store
-</footer>
-
 <script>
-let count=0;
-let total=0;
+let count = 0;
+let total = 0;
 
 function addToCart(price){
 count++;
-total+=price;
+total += price;
 
-document.getElementById("cart-count").innerText=count;
-document.getElementById("total-items").innerText=count;
-document.getElementById("total-price").innerText=total;
+document.getElementById("cart-count").innerText = count;
+}
+
+/* ✅ STEP 2 ADDED */
+function goToCheckout(){
+if(count === 0){
+alert("Your cart is empty!");
+}else{
+window.location.href = "checkout.html?total=" + total;
+}
 }
 </script>
 
